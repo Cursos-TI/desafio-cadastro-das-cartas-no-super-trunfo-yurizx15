@@ -9,5 +9,15 @@ float area1;
 float pib1;
 int pontosTuristico1;
 
+   //Declarando cartas 2
+char estado2;
+char codigo2{5};
+char nomeCidade{30};
+int populacao2;
+float area2;
+float pib2;
+int pontosTuristico2;
+
+   //Entrada dos dados carta1
 
 
