@@ -1,25 +1,49 @@
 #include <stdio.h>
-  int main(){
-    //Declarando cartas 1
-char estado1;
-char codigo1[4];
-char nomeCidade1[30];
-int populacao1;
-float area1;
-float pib1;
-int pontosTuristico1;
 
-   //Declarando cartas 2
-char estado2;
-char codigo2[4];
-char nomeCidade[30];
-int populacao2;
-float area2;
-float pib2;
-int pontosTuristico2;
+int main() {
+    // Declaração de variáveis da carta 1
+    char estado1[2];
+    char codigo1[5];
+    char cidade1[20];
+    int populacao1;
+    int PontosTuristico1;
+    float area1;
+    float pib1;
 
-   //Entrada dos dados carta1
 
-printf("Digite os dados da Carta1: \n");
+    // Declaração de variáveis da carta 2
+    char estado2[2];
+    char codigo2[5];
+    char cidade2[20];
+    int populacao2;
+    int pontosTuristicos2;
+    float area2;
+    float pib2;
+
+    // Entrada dos dados da carta 1
+    printf("Digite Seu Estado: \n");
+    scanf("%s", &estado1);
+    
+    printf("Codigo: \n");
+    scanf("%s", &codigo1);
+
+    printf("Nome da Cidade: \n");
+    scanf("%s", &cidade1);
+
+    printf("Total de Habitantes: \n");
+    scanf("%d", &populacao1);
+
+    printf("Area: \n");
+    scanf("%f", &area1);
+
+    printf
+    
+
+    // Entrada dos dados da carta 2
+   
+
+    return 0;
+}
+
 
   
