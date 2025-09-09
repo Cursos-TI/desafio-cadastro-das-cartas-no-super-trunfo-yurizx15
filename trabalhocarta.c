@@ -7,7 +7,7 @@ int main() {
     float pib1, pib2;
     int pontos1, pontos2;
     float densidade1, densidade2;
-    int opcao;
+    int opcao1, opcao2;
 
     // Carta 1
     printf("Carta 1:\n");
@@ -47,70 +47,55 @@ int main() {
 
     densidade2 = populacao2 / area2;
 
-    // Menu de comparação
+    // Escolha dos atributos
     printf("\n===== SUPER TRUNFO =====\n");
     printf("Comparando %s x %s\n", pais1, pais2);
-    printf("Escolha o atributo para comparar:\n");
-    printf("1 - População\n");
-    printf("2 - Área\n");
-    printf("3 - PIB\n");
-    printf("4 - Pontos Turísticos\n");
-    printf("5 - Densidade Demográfica\n");
-    printf("Opção: ");
-    scanf("%d", &opcao);
 
-    switch(opcao) {
-        case 1:
-            printf("\nPopulação: %s = %d | %s = %d\n", pais1, populacao1, pais2, populacao2);
-            if (populacao1 > populacao2)
-                printf("Vencedor: %s\n", pais1);
-            else if (populacao2 > populacao1)
-                printf("Vencedor: %s\n", pais2);
-            else
-                printf("Empate!\n");
-            break;
-        case 2:
-            printf("\nÁrea: %s = %.2f | %s = %.2f\n", pais1, area1, pais2, area2);
-            if (area1 > area2)
-                printf("Vencedor: %s\n", pais1);
-            else if (area2 > area1)
-                printf("Vencedor: %s\n", pais2);
-            else
-                printf("Empate!\n");
-            break;
-        case 3:
-            printf("\nPIB: %s = %.2f | %s = %.2f\n", pais1, pib1, pais2, pib2);
-            if (pib1 > pib2)
-                printf("Vencedor: %s\n", pais1);
-            else if (pib2 > pib1)
-                printf("Vencedor: %s\n", pais2);
-            else
-                printf("Empate!\n");
-            break;
-        case 4:
-            printf("\nPontos Turísticos: %s = %d | %s = %d\n", pais1, pontos1, pais2, pontos2);
-            if (pontos1 > pontos2)
-                printf("Vencedor: %s\n", pais1);
-            else if (pontos2 > pontos1)
-                printf("Vencedor: %s\n", pais2);
-            else
-                printf("Empate!\n");
-            break;
-        case 5:
-            printf("\nDensidade: %s = %.2f | %s = %.2f\n", pais1, densidade1, pais2, densidade2);
-            if (densidade1 < densidade2)
-                printf("Vencedor: %s\n", pais1);
-            else if (densidade2 < densidade1)
-                printf("Vencedor: %s\n", pais2);
-            else
-                printf("Empate!\n");
-            break;
-        default:
-            printf("\nOpção inválida!\n");
+    printf("\nEscolha o PRIMEIRO atributo:\n");
+    printf("1 - População\n2 - Área\n3 - PIB\n4 - Pontos Turísticos\n5 - Densidade Demográfica\nOpção: ");
+    scanf("%d", &opcao1);
+
+    printf("\nEscolha o SEGUNDO atributo (diferente do primeiro):\n");
+    for (int i = 1; i <= 5; i++) {
+        if (i == opcao1) continue;
+        switch (i) {
+            case 1: printf("1 - População\n"); break;
+            case 2: printf("2 - Área\n"); break;
+            case 3: printf("3 - PIB\n"); break;
+            case 4: printf("4 - Pontos Turísticos\n"); break;
+            case 5: printf("5 - Densidade Demográfica\n"); break;
+        }
     }
+    printf("Opção: ");
+    scanf("%d", &opcao2);
+
+    // Função inline com ternário p/ pegar valor
+    float pegarValor(int opcao, int pop, float area, float pib, int pontos, float dens) {
+        return (opcao == 1) ? pop :
+               (opcao == 2) ? area :
+               (opcao == 3) ? pib :
+               (opcao == 4) ? pontos : dens;
+    }
+
+    float v1a = pegarValor(opcao1, populacao1, area1, pib1, pontos1, densidade1);
+    float v2a = pegarValor(opcao1, populacao2, area2, pib2, pontos2, densidade2);
+    float v1b = pegarValor(opcao2, populacao1, area1, pib1, pontos1, densidade1);
+    float v2b = pegarValor(opcao2, populacao2, area2, pib2, pontos2, densidade2);
+
+    // Soma dos dois atributos
+    float soma1 = v1a + v1b;
+    float soma2 = v2a + v2b;
+
+    // Exibição dos resultados
+    printf("\n=== RESULTADO ===\n");
+    printf("%s -> %.2f + %.2f = %.2f\n", pais1, v1a, v1b, soma1);
+    printf("%s -> %.2f + %.2f = %.2f\n", pais2, v2a, v2b, soma2);
+
+    // Decisão final com ternário
+    (soma1 > soma2) ? printf("\nVencedor: %s!\n", pais1) :
+    (soma2 > soma1) ? printf("\nVencedor: %s!\n", pais2) :
+                      printf("\nEmpate!\n");
 
     return 0;
 }
 
-
-  
