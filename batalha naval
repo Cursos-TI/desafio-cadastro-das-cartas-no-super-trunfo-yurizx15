@@ -1,1 +1,70 @@
+#include <stdio.h>
+
+#define TAM 10   // tamanho do tabuleiro (10x10)
+#define NAVIO 3  // valor que representa parte do navio
+#define AGUA 0   // valor que representa água
+#define TAM_NAVIO 3 // tamanho fixo dos navios
+
+int main() {
+    int tabuleiro[TAM][TAM];
+    int i, j;
+
+    // ===== 1. Inicializando o tabuleiro com 0 (água) =====
+    for (i = 0; i < TAM; i++) {
+        for (j = 0; j < TAM; j++) {
+            tabuleiro[i][j] = AGUA;
+        }
+    }
+
+    // ===== 2. Definindo os navios =====
+    // Navio horizontal
+    int navioHorizontal[TAM_NAVIO] = {NAVIO, NAVIO, NAVIO};
+    // Navio vertical
+    int navioVertical[TAM_NAVIO] = {NAVIO, NAVIO, NAVIO};
+
+    // ===== 3. Coordenadas iniciais dos navios =====
+    // (essas coordenadas são definidas diretamente no código)
+    int linhaHorizontal = 2; // linha onde o navio horizontal começará
+    int colunaHorizontal = 4; // coluna inicial do navio horizontal
+
+    int linhaVertical = 6; // linha inicial do navio vertical
+    int colunaVertical = 1; // coluna onde o navio vertical começará
+
+    // ===== 4. Validação simples (garantir que os navios não ultrapassem o limite) =====
+    if (colunaHorizontal + TAM_NAVIO <= TAM && linhaVertical + TAM_NAVIO <= TAM) {
+
+        // ===== 5. Posicionando o navio horizontal =====
+        for (i = 0; i < TAM_NAVIO; i++) {
+            tabuleiro[linhaHorizontal][colunaHorizontal + i] = navioHorizontal[i];
+        }
+
+        // ===== 6. Posicionando o navio vertical =====
+        for (i = 0; i < TAM_NAVIO; i++) {
+            // Verifica se não há sobreposição
+            if (tabuleiro[linhaVertical + i][colunaVertical] == AGUA) {
+                tabuleiro[linhaVertical + i][colunaVertical] = navioVertical[i];
+            } else {
+                printf("Erro: sobreposição detectada! Revise as coordenadas.\n");
+                return 1;
+            }
+        }
+
+    } else {
+        printf("Erro: Coordenadas inválidas! Um dos navios sai do tabuleiro.\n");
+        return 1;
+    }
+
+    // ===== 7. Exibindo o tabuleiro =====
+    printf("\n=== TABULEIRO BATALHA NAVAL ===\n\n");
+    for (i = 0; i < TAM; i++) {
+        for (j = 0; j < TAM; j++) {
+            printf("%d ", tabuleiro[i][j]);
+        }
+        printf("\n");
+    }
+
+    printf("\n0 = Água | 3 = Navio\n");
+
+    return 0;
+}
 
